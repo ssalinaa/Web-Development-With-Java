@@ -1,0 +1,65 @@
+.createAccount {
+    background-image: url('/assets/backgroundCreateAccount.jpg');
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 300vh;
+}
+
+.createAccountTitle {
+    font-family: fantasy;
+    font-size: 60px;
+    font-weight: bold;
+    color:  rgba(163, 174, 165, 0.929);
+    margin-left: 50px; 
+    margin-top: 20px;
+    text-shadow: 10px 10px 6px rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.createAccountContainer {
+    display: flex;
+    background-color: rgba(15, 33, 19, 0.929);
+    width: 590px;
+    height: 650px;
+    margin-left: -530px;
+    z-index: 0;
+}
+
+.doneeButton {
+    font-family: verdana;
+    font-weight: bold;
+    font-size: 40px;
+    margin-left: 700px; 
+    margin-top: 200px;
+    border-radius: 10px;
+    width: 500px;
+    height: 100px;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+    box-shadow: 2px 4px  rgba(37, 96, 15, 0.626);
+    border: solid rgba(37, 96, 15, 0.543); 
+    cursor: pointer;
+}
+
+.doneeButton:hover {
+    background-color:rgba(15, 33, 19, 0.523);
+}
+
+.contributorButton {
+    font-family: verdana;
+    font-weight: bold;
+    font-size: 40px;
+    margin-left: -500px; 
+    margin-top: 350px;
+    border-radius: 10px;
+    width: 500px;
+    height: 100px;
+    cursor: pointer;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+    box-shadow: 2px 4px  rgba(37, 96, 15, 0.626);
+    border: solid rgba(37, 96, 15, 0.543); 
+}
+
+.contributorButton:hover {
+    background-color: rgba(15, 33, 19, 0.523);
+} 

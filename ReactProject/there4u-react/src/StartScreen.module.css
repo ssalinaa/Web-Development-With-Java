@@ -1,0 +1,160 @@
+.startScreen {
+  background-image: url('/assets/backgroundMainPage.jpg'); 
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-repeat: no-repeat;
+}  
+
+.startScreenTitle {
+  font-family: fantasy;
+  font-size: 50px;
+  font-weight: bold;
+  color: rgba(15, 33, 19, 0.929);
+  margin-left: -950px;
+  margin-top: 10px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.startScreenSubtitle {
+  font-family: fantasy;
+  font-size: 100px;
+  font-weight: bold;
+  color: rgba(36, 96, 15, 0.829);
+  margin-left: -550px;
+  margin-top: 20px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.quote {
+  font-family: fantasy;
+  font-size: 40px;
+  font-weight: bold;
+  color: rgba(15, 33, 19, 0.929);
+  margin-left: -570px;
+  margin-top: 20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.author {
+  font-family: fantasy;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgba(15, 33, 19, 0.929);
+  margin-left: -570px;
+  margin-top: 20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.loginButton {
+  margin-top: -70px;
+  margin-left: 100px;
+  font-family: fantasy;
+  font-size: 23px;
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.895);
+  box-shadow: 2px 4px rgba(37, 96, 15, 0.626);
+  border: solid rgba(36, 96, 15, 0.829);
+  background-color: rgba(36, 96, 15, 0.829);
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: rgba(37, 96, 15, 0.495);
+}
+
+.createAccountButton {
+  margin-top: -50px;
+  margin-left: 270px;
+  font-family: fantasy;
+  font-size: 23px;
+  width: 220px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.895);
+  box-shadow: 2px 4px rgba(37, 96, 15, 0.626);
+  border: solid rgba(36, 96, 15, 0.829);
+  background-color: rgba(36, 96, 15, 0.829);
+  cursor: pointer;
+}
+
+.createAccountButton:hover {
+  background-color: rgba(37, 96, 15, 0.495);
+}
+
+.aboutUsButton {
+  margin-top: -520px;
+  margin-left: 960px;
+  font-family: fantasy;
+  font-size: 23px;
+  width: 150px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.895);
+  box-shadow: 2px 4px rgba(37, 96, 15, 0.626);
+  border: solid rgba(36, 96, 15, 0.829);
+  cursor: pointer;
+}
+
+.aboutUsButton:hover {
+  background-color: rgba(37, 96, 15, 0.495);
+}
+
+.peopleImage1 {
+  background-image: url('/assets/image2.jpg');
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  border: 2px solid rgba(60, 164, 22, 0.829);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  margin-top: -430px;
+  margin-left: 700px;
+}
+
+.peopleImage2 {
+  background-image: url('/assets/image1.jpg');
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  border: 2px solid rgba(60, 164, 22, 0.829);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  margin-top: -100px;
+  margin-left: 950px;
+}
+
+.peopleImage3 {
+  background-image: url('/assets/image3.jpg');
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  border: 2px solid rgba(60, 164, 22, 0.829);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  margin-top: -50px;
+  margin-left: 600px;
+}
+
+.foodImage4 {
+  background-image: url('/assets/image4.jpg');
+  background-size: cover;
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  border: 2px solid rgba(60, 164, 22, 0.829);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  margin-top: -80px;
+  margin-left: 900px;
+}

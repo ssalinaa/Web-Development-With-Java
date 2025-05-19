@@ -1,0 +1,65 @@
+body {
+    background-image: url('https://s3.amazonaws.com/gameartpartnersimagehost/wp-content/uploads/2020/08/Sweet-bacgroung.jpg');
+    background-size: cover;
+}
+
+h1 {
+    color: rgb(226, 43, 125);
+    margin-left: 150px;
+}
+
+.contact-form {
+    background-color: white;
+    height: 430px;
+    width: 500px;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.name {
+    height: 10px;
+    width: 400px;
+    margin-top: 10px;
+    margin-left: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    border-color: rgb(226, 43, 125);
+}
+
+.email {
+    height: 10px;
+    width: 400px;
+    margin-top: 20px;
+    margin-left: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    border-color: rgb(226, 43, 125);
+}
+
+.message {
+    height: 80px;
+    width: 400px;
+    margin-top: 20px;
+    margin-left: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    border-color: rgb(226, 43, 125);
+}
+
+.button {
+    background-color: rgb(226, 43, 125);
+    font-family: Verdana;
+    color: white;
+    height: 40px;
+    width: 200px;
+    margin-top: 20px;
+    margin-left: 150px;
+    border-radius: 20px;
+    border-color: rgb(226, 43, 125);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(228, 74, 143);
+}
