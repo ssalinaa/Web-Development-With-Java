@@ -1,43 +1,56 @@
-class EnPassantHandler implements MoveHandler {
+public class EnPassantHandler implements MoveHandler {
 
-    @Override
-    public boolean canHandle(Board board, Move m, Color side) {
-        Piece pawn = board.get(m.fromR, m.fromC);
-        if (pawn == null || pawn.getType() != Type.PAWN || pawn.color != side) return false;
+    private final RuleEngine ruleEngine;
 
-        int dir = (pawn.color == Color.WHITE ? -1 : 1);
-        int dr = m.toR - m.fromR;
-        int dc = m.toC - m.fromC;
-
-        if (Math.abs(dc) != 1 || dr != dir || board.get(m.toR, m.toC) != null) return false;
-
-        Piece lastMovedPawn = board.getLastMovedPawn();
-        return lastMovedPawn != null &&
-                lastMovedPawn.color != side &&
-                board.get(m.fromR, m.toC) == lastMovedPawn;
+    public EnPassantHandler(RuleEngine ruleEngine) {
+        this.ruleEngine = ruleEngine;
     }
 
     @Override
-    public boolean execute(Board board, Move m, Color side) {
+    public boolean canHandle(Board board, Move m, Color side) {
+        Piece pawn = board.get(m.getFromR(), m.getFromC());
+        if (pawn == null || pawn.getType() != Type.PAWN || pawn.getColor() != side) return false;
+
+        int dir = (pawn.getColor() == Color.WHITE ? -1 : 1);
+        int dr = m.getToR() - m.getFromR();
+        int dc = m.getToC() - m.getFromC();
+
+        if (Math.abs(dc) != 1 || dr != dir || board.get(m.getToR(), m.getToC()) != null) return false;
+
+        Piece lastMovedPawn = board.getLastMovedPawn();
+
+        return lastMovedPawn != null &&
+                lastMovedPawn.getColor() != side &&
+                board.get(m.getFromR(), m.getToC()) == lastMovedPawn;
+    }
+
+    @Override
+    public MoveResult execute(Board board, Move m, Color side) {
         Board copy = board.copy();
-        Piece copyPawn = copy.get(m.fromR, m.fromC);
 
-        copy.set(m.toR, m.toC, copyPawn);
-        copy.set(m.fromR, m.fromC, null);
+        Piece copyPawn = copy.get(m.getFromR(), m.getFromC());
 
-        copy.set(m.fromR, m.toC, null);
+        copy.set(m.getToR(), m.getToC(), copyPawn);
+        copy.set(m.getFromR(), m.getFromC(), null);
+        copy.set(m.getFromR(), m.getToC(), null);
 
-        if (copy.isInCheck(side)) return false;
+        if (ruleEngine.isInCheck(copy, side)) {
+            return MoveResult.failure(
+                    MoveResultType.SPECIAL_MOVE_FAILED,
+                    "En Passant leads to a check."
+            );
+        }
 
-        Piece originalPawn = board.get(m.fromR, m.fromC);
-        board.set(m.toR, m.toC, originalPawn);
-        board.set(m.fromR, m.fromC, null);
-        board.set(m.fromR, m.toC, null);
+        Piece originalPawn = board.get(m.getFromR(), m.getFromC());
 
-        originalPawn.hasMoved = true;
+        board.set(m.getToR(), m.getToC(), originalPawn);
+        board.set(m.getFromR(), m.getFromC(), null);
+        board.set(m.getFromR(), m.getToC(), null);
+
+        originalPawn.setHasMoved(true);
         board.setLastMove(m);
         board.recordBoardState();
 
-        return true;
+        return MoveResult.success();
     }
 }

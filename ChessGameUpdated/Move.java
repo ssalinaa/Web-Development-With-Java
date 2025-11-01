@@ -1,6 +1,6 @@
 class Move {
-    final int fromR, fromC, toR, toC;
-    final Type promotion;
+    private final int fromR, fromC, toR, toC;
+    private final Type promotion;
 
     Move(int fr, int fc, int tr, int tc, Type promotion) {
         this.fromR = fr;
@@ -9,6 +9,12 @@ class Move {
         this.toC = tc;
         this.promotion = promotion;
     }
+
+    public int getFromR() { return fromR; }
+    public int getFromC() { return fromC; }
+    public int getToR() { return toR; }
+    public int getToC() { return toC; }
+    public Type getPromotion() { return promotion; }
 
     static Move parse(String s) {
         if (s.length() < 4) return null;
@@ -35,7 +41,9 @@ class Move {
         return coord(fromR, fromC) + "->" + coord(toR, toC) + (promotion != null ? "=" + promotion : "");
     }
 
-    static String coord(int r, int c) {
-        return "" + (char)('a' + c) + (8 - r);
+    private static String coord(int r, int c) {
+        char col = (char) ('a' + c);
+        int row = r + 1;
+        return String.valueOf(col) + row;
     }
 }

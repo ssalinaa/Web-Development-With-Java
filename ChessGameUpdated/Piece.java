@@ -1,12 +1,24 @@
 abstract class Piece {
-    final Color color;
-    boolean hasMoved = false;
+    private final Color color;
+    private boolean hasMoved = false;
 
     Piece(Color color) { this.color = color; }
 
     abstract boolean isValidMove(Board board, Move move);
-
+    abstract Piece copy();
     abstract Type getType();
+
+    public Color getColor() {
+        return color;
+    }
+
+    public boolean hasMoved() {
+        return hasMoved;
+    }
+
+    public void setHasMoved(boolean value) {
+        this.hasMoved = value;
+    }
 
     @Override
     public String toString() {
@@ -20,6 +32,6 @@ abstract class Piece {
             case PAWN: ch = 'P'; break;
             default: ch = '?';
         }
-        return color == Color.WHITE ? "" + ch : "" + Character.toLowerCase(ch);
+        return getColor() == Color.WHITE ? "" + ch : "" + Character.toLowerCase(ch);
     }
 }

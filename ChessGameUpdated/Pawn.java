@@ -1,24 +1,40 @@
 class Pawn extends Piece {
-    Pawn(Color color) { super(color); }
+    Pawn(Color color) {
+        super(color);
+    }
+
+    @Override
+    Piece copy() {
+        Pawn newPawn = new Pawn(getColor());
+        newPawn.setHasMoved(hasMoved());
+        return newPawn;
+    }
 
     @Override
     boolean isValidMove(Board board, Move m) {
-        int dir = (color == Color.WHITE ? -1 : 1);
-        int dr = m.toR - m.fromR;
-        int dc = m.toC - m.fromC;
-        Piece dest = board.get(m.toR, m.toC);
 
-        if (dc == 0 && dr == dir && dest == null) return true;
+        int dir = (getColor() == Color.WHITE ? -1 : 1);
+        int dr = m.getToR() - m.getFromR();
+        int dc = m.getToC() - m.getFromC();
+        Piece dest = board.get(m.getToR(), m.getToC());
 
-        if (dc == 0 && dr == 2*dir && !hasMoved &&
-                dest == null && board.get(m.fromR + dir, m.fromC) == null)
+        if (dc == 0 && dr == dir && dest == null) {
             return true;
+        }
 
-        if (Math.abs(dc) == 1 && dr == dir && dest != null && dest.color != color) return true;
+        if (dc == 0 && dr == 2 * dir && !hasMoved() &&
+                dest == null && board.get(m.getFromR() + dir, m.getFromC()) == null) {
+            return true;
+        }
 
+        if (Math.abs(dc) == 1 && dr == dir && dest != null && dest.getColor() != getColor()) {
+            return true;
+        }
         return false;
     }
 
     @Override
-    Type getType() { return Type.PAWN; }
+    Type getType() {
+        return Type.PAWN;
+    }
 }
