@@ -1,0 +1,20 @@
+class King extends Piece {
+    King(Color color) { super(color); }
+
+    @Override
+    Piece copy() {
+        King newKing = new King(getColor());
+        newKing.setHasMoved(hasMoved());
+        return newKing;
+    }
+
+    @Override
+    boolean isValidMove(Board board, Move m) {
+        int dr = Math.abs(m.getToR() - m.getFromR());
+        int dc = Math.abs(m.getToC() - m.getFromC());
+        return dr <= 1 && dc <= 1;
+    }
+
+    @Override
+    Type getType() { return Type.KING; }
+}
