@@ -48,7 +48,6 @@ public class PawnPromotionHandler implements MoveHandler {
         board.set(m.getToR(), m.getToC(), newPiece);
         board.set(m.getFromR(), m.getFromC(), null);
         board.setLastMove(m);
-        board.recordBoardState();
 
         return MoveResult.success();
     }

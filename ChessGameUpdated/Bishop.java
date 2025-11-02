@@ -1,4 +1,5 @@
-class Bishop extends Piece {
+class Bishop extends SlidingPiece {
+
     Bishop(Color color) {
         super(color);
     }
@@ -21,21 +22,13 @@ class Bishop extends Piece {
     }
 
     @Override
-    Type getType() {
-        return Type.BISHOP;
+    boolean canAttackSquare(Board board, int fromR, int fromC, int toR, int toC) {
+        Move m = new Move(fromR, fromC, toR, toC, null);
+        return isValidMove(board, m);
     }
 
-    private boolean isClearPathInternal(Board board, Move m) {
-        int dr = Integer.signum(m.getToR() - m.getFromR());
-        int dc = Integer.signum(m.getToC() - m.getFromC());
-
-        int r = m.getFromR() + dr;
-        int c = m.getFromC() + dc;
-
-        while(r != m.getToR() || c != m.getToC()){
-            if(board.get(r, c) != null) return false;
-            r += dr; c += dc;
-        }
-        return true;
+    @Override
+    Type getType() {
+        return Type.BISHOP;
     }
 }

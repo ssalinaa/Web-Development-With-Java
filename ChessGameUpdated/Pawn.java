@@ -34,6 +34,15 @@ class Pawn extends Piece {
     }
 
     @Override
+    boolean canAttackSquare(Board board, int fromR, int fromC, int toR, int toC) {
+        int dir = (getColor() == Color.WHITE ? -1 : 1);
+        int dr = toR - fromR;
+        int dc = toC - fromC;
+
+        return Math.abs(dc) == 1 && dr == dir;
+    }
+
+    @Override
     Type getType() {
         return Type.PAWN;
     }

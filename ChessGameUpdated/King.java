@@ -17,4 +17,10 @@ class King extends Piece {
 
     @Override
     Type getType() { return Type.KING; }
+
+    @Override
+    boolean canAttackSquare(Board board, int fromR, int fromC, int toR, int toC) {
+        Move m = new Move(fromR, fromC, toR, toC, null);
+        return isValidMove(board, m);
+    }
 }

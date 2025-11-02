@@ -9,13 +9,16 @@ public class JavaChess {
         RuleEngine ruleEngine = new ChessRuleEngine();
         PromotionPieceSupplier pieceSupplier = new DefaultPieceSupplier();
 
+        BoardInitializer initializer = new StandardBoardInitializer();
+        GameHistory history = new GameHistory();
+
         List<MoveHandler> handlers = Arrays.asList(
                 new CastlingHandler(ruleEngine),
                 new EnPassantHandler(ruleEngine),
                 new PawnPromotionHandler(pieceSupplier)
         );
 
-        Game game = new Game(ui, board, handlers, ruleEngine);
+        Game game = new Game(ui, board, handlers, ruleEngine, history, initializer);
         game.play();
     }
 }

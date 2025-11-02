@@ -11,7 +11,18 @@ class ConsoleUI implements UI {
 
     @Override
     public void showBoard(Board board) {
-        board.print();
+        System.out.println("    a b c d e f g h");
+        System.out.println("  +------------------------+");
+        for(int r = 0; r < 8; r++){
+            System.out.print((8-r) + " | ");
+            for(int c = 0; c < 8; c++){
+                Piece p = board.get(r, c);
+                System.out.print((p == null ? ". " : p.toString() + " "));
+            }
+            System.out.println("| " + (8-r));
+        }
+        System.out.println("  +------------------------+");
+        System.out.println("    a b c d e f g h");
     }
 
     @Override

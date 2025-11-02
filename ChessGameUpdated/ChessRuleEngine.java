@@ -57,12 +57,19 @@ public class ChessRuleEngine implements RuleEngine {
     }
 
     private boolean leavesKingInCheck(Board board, Move m, Color side) {
-        Board copy = board.copy();
-        Piece p = copy.get(m.getFromR(), m.getFromC());
-        copy.set(m.getToR(), m.getToC(), p);
-        copy.set(m.getFromR(), m.getFromC(), null);
 
-        return isInCheck(copy, side);
+        Piece movingPiece = board.get(m.getFromR(), m.getFromC());
+        Piece capturedPiece = board.get(m.getToR(), m.getToC());
+
+        board.set(m.getToR(), m.getToC(), movingPiece);
+        board.set(m.getFromR(), m.getFromC(), null);
+
+        boolean inCheck = isInCheck(board, side);
+
+        board.set(m.getFromR(), m.getFromC(), movingPiece);
+        board.set(m.getToR(), m.getToC(), capturedPiece);
+
+        return inCheck;
     }
 
     public boolean isSquareAttacked(Board board, int r, int c, Color enemy) {
@@ -71,20 +78,7 @@ public class ChessRuleEngine implements RuleEngine {
                 Piece p = board.get(fr, fc);
                 if(p == null || p.getColor() != enemy) continue;
 
-                Move m = new Move(fr, fc, r, c, null);
-
-                if (p.getType() == Type.PAWN) {
-                    int dir = (enemy == Color.WHITE ? -1 : 1);
-                    int dr = m.getToR() - m.getFromR();
-                    int dc = m.getToC() - m.getFromC();
-
-                    if (Math.abs(dc) == 1 && dr == dir) {
-                        return true;
-                    }
-                    continue;
-                }
-
-                if(p.isValidMove(board, m)) {
+                if (p.canAttackSquare(board, fr, fc, r, c)) {
                     return true;
                 }
             }

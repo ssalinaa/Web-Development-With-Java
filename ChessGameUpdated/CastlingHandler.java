@@ -1,6 +1,11 @@
 public class CastlingHandler implements MoveHandler {
     private final RuleEngine ruleEngine;
 
+    private static final int ROOK_QUEEN_SIDE_COL = 0;
+    private static final int ROOK_KING_SIDE_COL = 7;
+    private static final int ROOK_QUEEN_SIDE_FINAL_COL = 3;
+    private static final int ROOK_KING_SIDE_FINAL_COL = 5;
+
     public CastlingHandler(RuleEngine ruleEngine) {
         this.ruleEngine = ruleEngine;
     }
@@ -47,19 +52,21 @@ public class CastlingHandler implements MoveHandler {
         originalKing.setHasMoved(true);
 
         if (m.getToC() > m.getFromC()) {
-            Piece rook = board.get(m.getFromR(), 7);
-            board.set(m.getFromR(), 5, rook);
-            board.set(m.getFromR(), 7, null);
-            rook.setHasMoved(true);
-        } else {
-            Piece rook = board.get(m.getFromR(), 0);
-            board.set(m.getFromR(), 3, rook);
-            board.set(m.getFromR(), 0, null);
-            rook.setHasMoved(true);
-        }
 
-        board.setLastMove(m);
-        board.recordBoardState();
+            Piece castlingRook = board.get(m.getFromR(), ROOK_KING_SIDE_COL);
+
+            board.set(m.getFromR(), ROOK_KING_SIDE_FINAL_COL, castlingRook);
+            board.set(m.getFromR(), ROOK_KING_SIDE_COL, null);
+            castlingRook.setHasMoved(true);
+
+        } else {
+
+            Piece castlingRook = board.get(m.getFromR(), ROOK_QUEEN_SIDE_COL);
+
+            board.set(m.getFromR(), ROOK_QUEEN_SIDE_FINAL_COL, castlingRook);
+            board.set(m.getFromR(), ROOK_QUEEN_SIDE_COL, null);
+            castlingRook.setHasMoved(true);
+        }
 
         return MoveResult.success();
     }

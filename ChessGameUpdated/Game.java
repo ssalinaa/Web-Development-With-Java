@@ -5,19 +5,25 @@ class Game {
     private final UI ui;
     private final List<MoveHandler> specialMoveHandlers;
     private final RuleEngine ruleEngine;
+    private final GameHistory history;
+    private final BoardInitializer initializer;
     private Color turn = Color.WHITE;
 
-    public Game(UI ui, Board board, List<MoveHandler> specialMoveHandlers, RuleEngine ruleEngine) {
+    public Game(UI ui, Board board, List<MoveHandler> specialMoveHandlers, RuleEngine ruleEngine, GameHistory history, BoardInitializer initializer) {
         this.ui = ui;
         this.board = board;
         this.specialMoveHandlers = specialMoveHandlers;
         this.ruleEngine = ruleEngine;
+        this.history = history;
+        this.initializer = initializer;
     }
 
     public void play(){
+
         ui.showMessage("Java Chess - SOLID Refactoring Complete");
-        board.setup();
-        board.recordBoardState();
+
+        initializer.setup(board);
+        history.recordBoardState(board);
 
         while(true){
             ui.showBoard(board);
@@ -60,7 +66,7 @@ class Game {
                 } else {
                     board.makeMove(m);
                     board.setLastMove(m);
-                    board.recordBoardState();
+                    history.recordBoardState(board);
                     result = MoveResult.success();
                 }
             }
@@ -80,7 +86,9 @@ class Game {
                 ui.showBoard(board);
                 ui.showMessage("STALEMATE! It's a draw.");
                 break;
-            } else if(board.isThreefoldRepetition()){
+            }
+
+            else if(history.isThreefoldRepetition()){
                 ui.showBoard(board);
                 ui.showMessage("DRAW by threefold repetition!");
                 break;

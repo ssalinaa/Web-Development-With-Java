@@ -7,7 +7,7 @@ abstract class Piece {
     abstract boolean isValidMove(Board board, Move move);
     abstract Piece copy();
     abstract Type getType();
-
+    abstract boolean canAttackSquare(Board board, int fromR, int fromC, int toR, int toC);
     public Color getColor() {
         return color;
     }
